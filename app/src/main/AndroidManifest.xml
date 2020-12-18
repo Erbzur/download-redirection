@@ -40,7 +40,7 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="Redirect downloads using system download manager to other downloaders" />
+            android:value="Redirect downloads from system download manager to third-party downloaders" />
         <meta-data
             android:name="xposedminversion"
             android:value="89" />

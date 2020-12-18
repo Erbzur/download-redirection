@@ -11,14 +11,23 @@ import kotlinx.serialization.json.Json
 class DownloaderViewModel : ViewModel() {
 
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Global.context)
-    private val downloaders =
-        sharedPreferences.getString(
+    private val downloaders: MutableList<Downloader>
+    private var downloadersAdapter: DownloadersAdapter? = null
+
+    init {
+        val existDownloaders = sharedPreferences.getString(
             Global.context.getString(R.string.key_setting_downloader),
             null
         )?.let {
-            Json.decodeFromString(it)
-        } ?: Global.getDefaultDownloaders()
-    private var downloadersAdapter: DownloadersAdapter? = null
+            Json.decodeFromString<MutableList<Downloader>>(it)
+        }
+        if (existDownloaders != null) {
+            downloaders = existDownloaders
+        } else {
+            downloaders = Global.getDefaultDownloaders()
+            saveDownloaders()
+        }
+    }
 
     private fun saveDownloaders() {
         sharedPreferences.edit()
@@ -30,7 +39,6 @@ class DownloaderViewModel : ViewModel() {
     }
 
     private fun saveCurrentDownloader(currentDownloaderName: String) {
-        saveDownloaders()
         sharedPreferences.edit()
             .putString(
                 Global.context.getString(R.string.key_current_downloader),
