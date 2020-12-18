@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="@string/title_category_settings"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/key_setting_enable_module"
+            android:title="@string/title_setting_enable_module"
+            app:iconSpaceReserved="false" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/key_setting_hide_icon"
+            android:title="@string/title_setting_hide_icon"
+            app:iconSpaceReserved="false" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/key_setting_debug_log"
+            android:title="@string/title_setting_debug_log"
+            app:iconSpaceReserved="false" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/key_setting_not_specify_downloader"
+            android:title="@string/title_setting_not_specify_downloader"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_setting_downloader"
+            android:title="@string/title_setting_downloader"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_setting_filter"
+            android:title="@string/title_setting_filter"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/title_category_about"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="@string/key_about_version"
+            android:title="@string/title_about_version"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_about_github"
+            android:summary="@string/url_about_github"
+            android:title="@string/title_about_github"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+</PreferenceScreen>
