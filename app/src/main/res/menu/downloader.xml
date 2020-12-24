@@ -6,7 +6,7 @@
         android:id="@+id/add"
         android:icon="@drawable/ic_baseline_add_24"
         android:title="@string/title_menu_downloader_add"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/reset"
         android:title="@string/title_menu_downloader_reset"
