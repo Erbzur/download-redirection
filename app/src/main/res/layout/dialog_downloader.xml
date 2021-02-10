@@ -4,38 +4,74 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/label_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/label_downloader_name"
+        app:layout_constraintBottom_toTopOf="@id/name"
+        app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/hint_downloader_name"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/label_name" />
+
+    <TextView
+        android:id="@+id/label_package_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/label_package_name"
+        app:layout_constraintBottom_toTopOf="@id/package_name"
+        app:layout_constraintStart_toStartOf="@id/package_name"
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <EditText
         android:id="@+id/package_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/hint_package_name"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@id/label_package_name" />
+
+    <TextView
+        android:id="@+id/label_target"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/label_target"
+        app:layout_constraintBottom_toTopOf="@id/target"
+        app:layout_constraintStart_toStartOf="@id/target"
+        app:layout_constraintTop_toBottomOf="@id/package_name" />
 
     <EditText
         android:id="@+id/target"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/hint_target"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/package_name" />
+        app:layout_constraintTop_toBottomOf="@id/label_target" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/use_intent"
@@ -51,15 +87,15 @@
         app:layout_constraintTop_toBottomOf="@id/target" />
 
     <TextView
+        android:id="@+id/label_use_intent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="@string/label_use_intent"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/use_intent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/use_intent"
         app:layout_constraintTop_toBottomOf="@id/target" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

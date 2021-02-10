@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.subscreen.filter.FilterFragment">
+    tools:context=".ui.view.subscreen.filter.FilterFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/app_list"
@@ -26,5 +26,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

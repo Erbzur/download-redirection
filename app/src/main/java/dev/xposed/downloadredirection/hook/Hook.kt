@@ -17,14 +17,12 @@ import de.robv.android.xposed.XposedHelpers.getObjectField
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 import dev.xposed.downloadredirection.BuildConfig
 import dev.xposed.downloadredirection.R
-import dev.xposed.downloadredirection.ui.MainActivity
-import dev.xposed.downloadredirection.ui.subscreen.downloader.Downloader
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
+import dev.xposed.downloadredirection.ui.model.downloader.Downloader
+import dev.xposed.downloadredirection.ui.view.MainActivity
 
 class Hook : IXposedHookLoadPackage, IXposedHookZygoteInit {
 
-    private lateinit var moduleResources: XModuleResources
+    private lateinit var moduleName: String
     private var debug = false
 
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam) {
@@ -39,7 +37,9 @@ class Hook : IXposedHookLoadPackage, IXposedHookZygoteInit {
     }
 
     override fun initZygote(startupParam: IXposedHookZygoteInit.StartupParam) {
-        moduleResources = XModuleResources.createInstance(startupParam.modulePath, null)
+        with(XModuleResources.createInstance(startupParam.modulePath, null)) {
+            moduleName = getString(R.string.app_name)
+        }
         findAndHookMethod(
             DownloadManager::class.java,
             "enqueue",
@@ -51,53 +51,29 @@ class Hook : IXposedHookLoadPackage, IXposedHookZygoteInit {
     private val enqueueHook = object : XC_MethodHook() {
         override fun beforeHookedMethod(param: MethodHookParam) {
             val currentApp = AndroidAppHelper.currentApplication()
-            val pref = PreferenceFetcher(currentApp)
-            debug = pref.getBoolean(
-                moduleResources.getString(R.string.key_setting_debug_log),
-                false
-            )
-            val moduleEnabled = pref.getBoolean(
-                moduleResources.getString(R.string.key_setting_enable_module),
-                false
-            )
-            if (!moduleEnabled) {
-                log("Module disabled")
+            val config = ModuleConfig(currentApp)
+            debug = config.debug
+
+            if (!config.moduleEnabled) {
+                log("Module not enabled")
                 return
             }
-            val appliedApps = pref.getStringSet(
-                moduleResources.getString(R.string.key_setting_filter),
-                null
-            )
-            if (appliedApps == null || !appliedApps.contains(currentApp.packageName)) {
-                log("No apps applied")
+            if (!config.appliedApps.contains(currentApp.packageName)) {
+                log("Not applied appliedapp: ${currentApp.packageName}")
                 return
             }
             log("Received download request")
 
-            val currentDownloader = pref.getString(
-                moduleResources.getString(R.string.key_setting_downloader),
-                null
-            )?.let {
-                Json.decodeFromString<MutableList<Downloader>>(it).find { downloader ->
-                    downloader.name == pref.getString(
-                        moduleResources.getString(R.string.key_current_downloader),
-                        null
-                    )
-                }
-            }
-            val notSpecifyDownloader = pref.getBoolean(
-                moduleResources.getString(R.string.key_setting_not_specify_downloader),
-                false
-            )
             val uri = getObjectField(param.args[0], "mUri") as Uri
             log("Url to be redirected: $uri")
-            if (!notSpecifyDownloader && redirectDownload(currentApp, uri, currentDownloader)
+            if (!config.notSpecifyDownloader
+                && redirectDownload(currentApp, uri, config.currentDownloader)
                 || redirectDownload(currentApp, uri)
             ) {
                 param.result = 0
-                log("Redirection: succeeded!")
+                log("Redirection succeeded!")
             } else {
-                log("Redirection: failed!")
+                log("Redirection failed!")
             }
         }
     }
@@ -137,7 +113,7 @@ class Hook : IXposedHookLoadPackage, IXposedHookZygoteInit {
 
     private fun log(msg: String) {
         if (debug) {
-            Log.d("Xposed", "${moduleResources.getString(R.string.app_name)} -> $msg")
+            Log.d("Xposed", "$moduleName -> $msg")
         }
     }
 }

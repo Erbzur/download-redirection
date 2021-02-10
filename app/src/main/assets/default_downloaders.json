@@ -1,0 +1,34 @@
+[
+  {
+    "name": "ADM",
+    "packageName": "com.dv.adm",
+    "target": "com.dv.adm.AEditor"
+  },
+  {
+    "name": "ADMPro",
+    "packageName": "com.dv.adm.pay",
+    "target": "com.dv.adm.pay.AEditor"
+  },
+  {
+    "name": "IDM",
+    "packageName": "idm.internet.download.manager",
+    "target": "idm.internet.download.manager.Downloader"
+  },
+  {
+    "name": "IDM+",
+    "packageName": "idm.internet.download.manager.plus",
+    "target": "idm.internet.download.manager.Downloader"
+  },
+  {
+    "name": "LoaderDroid",
+    "packageName": "org.zloy.android.downloader",
+    "target": "org.zloy.android.downloader.action.ADD_LOADING",
+    "useIntent": true
+  },
+  {
+    "name": "QKADM",
+    "packageName": "com.vanda_adm.vanda",
+    "target": "com.vanda.adm.friends",
+    "useIntent": true
+  }
+]

@@ -4,7 +4,6 @@
     <PreferenceCategory
         android:title="@string/title_category_settings"
         app:iconSpaceReserved="false">
-
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="@string/key_setting_enable_module"
@@ -37,7 +36,6 @@
     <PreferenceCategory
         android:title="@string/title_category_about"
         app:iconSpaceReserved="false">
-
         <Preference
             android:key="@string/key_about_version"
             android:title="@string/title_about_version"

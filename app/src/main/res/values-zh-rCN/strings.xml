@@ -16,11 +16,6 @@
     <string name="summary_setting_filter">应用了%d个应用</string>
     <string name="msg_module_not_active">模块未激活</string>
 
-    <string name="title_menu_filter_search">搜索</string>
-    <string name="title_menu_filter_show_system_apps">显示系统应用</string>
-    <string name="title_menu_filter_show_only_applied_apps">仅显示已应用</string>
-    <string name="hint_filter_search">按 App名/包名 搜索…</string>
-
     <string name="title_menu_downloader_add">添加下载器</string>
     <string name="title_menu_downloader_reset">重置为默认</string>
     <string name="add">添加</string>
@@ -28,11 +23,19 @@
     <string name="reset">重置</string>
     <string name="cancel">取消</string>
     <string name="delete">删除</string>
-    <string name="hint_downloader_name">名称</string>
-    <string name="hint_package_name">包名</string>
-    <string name="hint_target">Activity 或 Intent 名</string>
+    <string name="label_downloader_name">名称</string>
+    <string name="label_package_name">包名</string>
+    <string name="label_target">目标</string>
     <string name="label_use_intent">使用 Intent</string>
+    <string name="hint_downloader_name">不包含空白字符</string>
+    <string name="hint_package_name">下载器的包名</string>
+    <string name="hint_target">Activity 或 Intent 名</string>
     <string name="msg_edit_text_error">只允许 %s</string>
     <string name="msg_same_downloader_exist">已存在同名下载器！</string>
     <string name="msg_reset_downloaders_confirm">清除当前下载器列表并重置为默认？</string>
+
+    <string name="title_menu_filter_search">搜索</string>
+    <string name="title_menu_filter_show_system_apps">显示系统应用</string>
+    <string name="title_menu_filter_show_only_applied_apps">仅显示已应用</string>
+    <string name="hint_filter_search">按 App名/包名 搜索…</string>
 </resources>
